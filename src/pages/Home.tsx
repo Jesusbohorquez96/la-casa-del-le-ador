@@ -195,11 +195,11 @@ const Home: React.FC<HomeProps> = ({ onNavigateToMenu }) => {
         </div>
       </section>
 
-      <footer className="bg-dark-950 border-t border-dark-800 text-center py-8">
-        <p className="text-gray-400">
-          © 2024 La Leña. Todos los derechos reservados. | Hecho con ❤️ y mucha
-          leña
-        </p>
+      <footer className="bg-dark-950 border-t border-dark-800 text-center py-4">
+        <div className="text-gray-500 text-xs">
+          <p>© 2025 La Leña. Todos los derechos reservados.</p>
+          <p>Hecho con ❤️ y mucha leña</p>
+        </div>
       </footer>
     </div>
   );

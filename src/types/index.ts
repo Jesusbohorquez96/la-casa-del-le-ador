@@ -13,6 +13,7 @@ export interface Product {
   price?: number;
   image?: string;
   description?: string;
+  imageUrl?: string; // URL de la imagen del producto
 }
 
 export interface CartItem {

@@ -96,21 +96,21 @@ const Cart: React.FC = () => {
       onKeyDown={(e) => e.key === "Escape" && dispatch({ type: "TOGGLE_CART" })}
     >
       <div
-        className="bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl max-h-[90vh] flex flex-col animate-slide-up"
+        className="bg-white w-full max-w-md rounded-t-lg sm:rounded-lg max-h-[90vh] flex flex-col animate-slide-up"
         onClick={(e) => e.stopPropagation()}
         role="document"
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b">
-          <h2 className="text-xl font-bold flex items-center gap-2">
-            <ShoppingBag className="w-5 h-5" />
+        <div className="flex items-center justify-between p-3 border-b">
+          <h2 className="text-lg font-bold flex items-center gap-1.5">
+            <ShoppingBag className="w-4 h-4" />
             Tu Carrito ({state.items.length})
           </h2>
           <button
             onClick={() => dispatch({ type: "TOGGLE_CART" })}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            className="p-1 hover:bg-gray-100 rounded-full transition-colors"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
@@ -123,57 +123,57 @@ const Cart: React.FC = () => {
             </div>
           ) : (
             <>
-              <div className="p-4 space-y-4">
+              <div className="p-3 space-y-2">
                 {state.items.map((item) => (
-                  <div key={item.id} className="bg-gray-50 rounded-lg p-3">
-                    <div className="flex justify-between items-start mb-2">
+                  <div key={item.id} className="bg-gray-50 rounded-lg p-2">
+                    <div className="flex justify-between items-start mb-1.5">
                       <div className="flex-1">
-                        <h3 className="font-medium">{item.name}</h3>
+                        <h3 className="font-medium text-sm">{item.name}</h3>
                         {item.size && (
-                          <p className="text-sm text-gray-600">
+                          <p className="text-xs text-gray-600">
                             Tamaño: {item.size}
                           </p>
                         )}
                         {item.flavors && item.flavors.length > 0 && (
-                          <p className="text-sm text-gray-600">
+                          <p className="text-xs text-gray-600">
                             Sabores: {item.flavors.join(", ")}
                           </p>
                         )}
-                        <p className="text-primary-600 font-bold">
+                        <p className="text-primary-600 font-bold text-xs">
                           {formatPrice(item.price)}
                         </p>
                       </div>
                       <button
                         onClick={() => removeItem(item.id)}
-                        className="text-red-500 hover:text-red-700 p-1"
+                        className="text-red-500 hover:text-red-700 p-0.5"
                       >
-                        <X className="w-4 h-4" />
+                        <X className="w-3 h-3" />
                       </button>
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-1.5">
                         <button
                           onClick={() =>
                             updateQuantity(item.id, item.quantity - 1)
                           }
-                          className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors"
+                          className="w-6 h-6 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors"
                         >
-                          <Minus className="w-4 h-4" />
+                          <Minus className="w-3 h-3" />
                         </button>
-                        <span className="w-8 text-center font-medium">
+                        <span className="w-6 text-center font-medium text-sm">
                           {item.quantity}
                         </span>
                         <button
                           onClick={() =>
                             updateQuantity(item.id, item.quantity + 1)
                           }
-                          className="w-8 h-8 rounded-full bg-primary-500 hover:bg-primary-600 text-dark-950 flex items-center justify-center transition-colors"
+                          className="w-6 h-6 rounded-full bg-primary-500 hover:bg-primary-600 text-dark-950 flex items-center justify-center transition-colors"
                         >
-                          <Plus className="w-4 h-4" />
+                          <Plus className="w-3 h-3" />
                         </button>
                       </div>
-                      <span className="font-bold text-lg">
+                      <span className="font-bold text-sm">
                         {formatPrice(item.price * item.quantity)}
                       </span>
                     </div>
@@ -182,17 +182,17 @@ const Cart: React.FC = () => {
               </div>
 
               {/* Total */}
-              <div className="border-t p-4">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-xl font-bold">Total:</span>
-                  <span className="text-2xl font-bold text-primary-600">
+              <div className="border-t p-3">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-base font-bold">Total:</span>
+                  <span className="text-lg font-bold text-primary-600">
                     {formatPrice(getTotal())}
                   </span>
                 </div>
 
                 <button
                   onClick={() => setShowCheckout(true)}
-                  className="w-full bg-primary-500 hover:bg-primary-600 text-dark-950 py-3 rounded-lg font-bold text-lg transition-colors"
+                  className="w-full bg-primary-500 hover:bg-primary-600 text-dark-950 py-2 rounded-lg font-bold text-base transition-colors"
                 >
                   Finalizar Pedido
                 </button>
@@ -213,25 +213,25 @@ const Cart: React.FC = () => {
           onKeyDown={(e) => e.key === "Escape" && setShowCheckout(false)}
         >
           <div
-            className="bg-white rounded-2xl w-full max-w-md p-6 animate-fade-in"
+            className="bg-white rounded-lg w-full max-w-md p-4 animate-fade-in"
             onClick={(e) => e.stopPropagation()}
             role="document"
           >
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-bold">Datos de Entrega</h3>
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-lg font-bold">Datos de Entrega</h3>
               <button
                 onClick={() => setShowCheckout(false)}
-                className="p-2 hover:bg-gray-100 rounded-full"
+                className="p-1 hover:bg-gray-100 rounded-full"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               </button>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               <div>
                 <label
                   htmlFor="customer-name"
-                  className="block text-sm font-medium mb-1"
+                  className="block text-xs font-medium mb-1"
                 >
                   Nombre completo
                 </label>
@@ -242,7 +242,7 @@ const Cart: React.FC = () => {
                   onChange={(e) =>
                     setCustomer({ ...customer, name: e.target.value })
                   }
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full px-2 py-1.5 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary-500 focus:border-transparent text-sm"
                   placeholder="Tu nombre completo"
                   required
                 />
@@ -251,7 +251,7 @@ const Cart: React.FC = () => {
               <div>
                 <label
                   htmlFor="customer-phone"
-                  className="block text-sm font-medium mb-1"
+                  className="block text-xs font-medium mb-1"
                 >
                   Teléfono
                 </label>
@@ -262,7 +262,7 @@ const Cart: React.FC = () => {
                   onChange={(e) =>
                     setCustomer({ ...customer, phone: e.target.value })
                   }
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full px-2 py-1.5 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary-500 focus:border-transparent text-sm"
                   placeholder="322 246 1238"
                   required
                 />
@@ -271,7 +271,7 @@ const Cart: React.FC = () => {
               <div>
                 <label
                   htmlFor="customer-address"
-                  className="block text-sm font-medium mb-1"
+                  className="block text-xs font-medium mb-1"
                 >
                   Dirección de entrega
                 </label>
@@ -281,8 +281,8 @@ const Cart: React.FC = () => {
                   onChange={(e) =>
                     setCustomer({ ...customer, address: e.target.value })
                   }
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
-                  rows={3}
+                  className="w-full px-2 py-1.5 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary-500 focus:border-transparent resize-none text-sm"
+                  rows={2}
                   placeholder="Calle, carrera, número, barrio..."
                   required
                 />
@@ -291,7 +291,7 @@ const Cart: React.FC = () => {
               <div>
                 <label
                   htmlFor="customer-observations"
-                  className="block text-sm font-medium mb-1"
+                  className="block text-xs font-medium mb-1"
                 >
                   Observaciones{" "}
                   <span className="text-gray-400">(opcional)</span>
@@ -302,16 +302,16 @@ const Cart: React.FC = () => {
                   onChange={(e) =>
                     setCustomer({ ...customer, observations: e.target.value })
                   }
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
+                  className="w-full px-2 py-1.5 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary-500 focus:border-transparent resize-none text-sm"
                   rows={2}
                   placeholder="Instrucciones especiales, alergias, preferencias..."
                 />
               </div>
             </div>
 
-            <div className="mt-6 space-y-3">
-              <div className="bg-gray-50 p-3 rounded-lg">
-                <div className="flex justify-between font-bold text-lg">
+            <div className="mt-4 space-y-2">
+              <div className="bg-gray-50 p-2 rounded-lg">
+                <div className="flex justify-between font-bold text-base">
                   <span>Total a pagar:</span>
                   <span className="text-primary-600">
                     {formatPrice(getTotal())}
@@ -321,7 +321,7 @@ const Cart: React.FC = () => {
 
               <button
                 onClick={handleCheckout}
-                className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-bold flex items-center justify-center gap-2 transition-colors"
+                className="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-bold flex items-center justify-center gap-1 transition-colors text-sm"
               >
                 <span>📱</span>
                 Enviar por WhatsApp
